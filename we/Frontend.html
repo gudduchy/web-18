@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frontend</title>
+    <style>
+        #container{
+            display:grid;
+            grid-template-columns: repeat(4,1fr);
+            grid-template-rows: repeat(5,1fr);
+            gap:10px;
+            
+        }
+        #container>div{
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        }
+        div>img{
+            width:100%;
+        }
+         h3{
+            text-align:center
+        }
+        p{
+            text-align:center;
+            color:grey
+        }
+        p+img{
+            width:80%;
+            
+            
+        }
+    </style>
+</head>
+<body>
+   <div id="container">
+
+   </div>
+</body>
+</html>
+<script>
+    var investorArr=JSON.parse(localStorage.getItem("investorsData"))
+    console.log(investorArr)
+    
+    investorArr.forEach(function(ele){
+    var box=document.createElement("div");
+    var investor_images=document.createElement("img");
+    investor_images.setAttribute("src",ele.investorsImg)
+    var investor_names=document.createElement("h3");
+    investor_names.innerText=ele.investorsName
+    var investor_post=document.createElement("p");
+    investor_post.innerText=ele.investorsRole
+    var investor_logo=document.createElement("img");
+    investor_logo.setAttribute("src",ele.invaestorsLogo)
+    box.append(investor_images,investor_names,investor_post,investor_logo )
+      document.querySelector("#container").append(box)
+    
+    })
+        
+  
+</script>
