@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="common.css" />
+    <style>
+     #img{
+         width:30%;
+         margin:auto;
+         padding-top: 30px;
+     }
+     #container{
+        display:block;
+       width:350px;
+       height:380px;
+       margin:auto;
+       box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+       padding-left: 30px;
+     }
+     h3{
+         text-align: center;
+         padding-top: 20px;
+     }
+     input{
+      font-size:25px
+     }
+     #submit {
+  width: 70%;
+  margin: auto;
+  background-color: rgb(9, 94, 9);
+  color: white;
+  border: none;
+  border-radius: 15px;
+  margin-top: 20px;
+}
+    </style>
+</head>
+<body>
+    <div id="navbar">
+        <div><a href="signup.html">Sign Up</a></div>
+        <div><a href="login.html">Log In</a></div>
+        <div><a href="mens.html">Mens</a></div>
+        <div><a href="women.html">Womens</a></div>
+         </div>
+    <div id="img">
+    <img src="https://sso.masaischool.com/brand_dark.svg"alt="maasi"/>
+</div>
+    <div id="container">
+        <h3>Sign Up</h3>
+        <form id="form">
+            <p>Full name</p>
+            <input id="name" type="text" placeholder="Enter your full name"/>
+            <p>Email</p>
+            <input id="mail" type="text" placeholder="Enter email"/>
+            <p>Password</p>
+            <input id="password" type="text" placeholder="Enter password"/> 
+            <input id="submit" type="submit" name="submit" value="Sign Up" />
+           
+        </form>
+       
+   
+    </div>
+</body>
+</html>
+<script>
+  var form=document.querySelector("#form");
+   form.addEventListener("submit",function(event){
+   event.preventDefault();
+   var data={
+       username:form.name.value,
+       email:form.mail.value,
+       password:form.password.value,
+   }
+   console.log(data)
+   localStorage.setItem("userData",JSON.stringify(data))
+   alert("sign up successful")
+   window.location.href="login.html"
+
+   })
+</script>
