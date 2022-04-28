@@ -58,23 +58,28 @@
 </body>
 </html>
 <script>
-    var arr=JSON.parse(localStorage.getItem("details"))
-  
-  document.querySelector("#loginform").addEventListener("submit",fn)
+    var form=document.querySelector("#loginform");
+ var userData=JSON.parse(localStorage.getItem("userData"))
+    
+ form.addEventListener("submit",function(event){
+  event.preventDefault();
 
-  var arr2=[]
-    function fn(){
-        event.preventDefault()
-        var obj={
-          c_emails:document.querySelector("#c_mail").value,
-          c_passwords:document.querySelector("#c_pass").value,
-            }
-         arr2.push(obj)
-        console.log(arr2)
-        localStorage.setItem("c_details",JSON.stringify(arr2))
-       
-    }
-
+  var data={
+      email:loginform.c_mail.value,
+      password:loginform.c_pass.value,
+  }
+if(userData==null){
+    alert("plese create account")
+}
+  else if(userData.email==data.email && userData.password==data.password){
+      alert("Sign in successful")
+      localStorage.setItem("signin",JSON.stringify(userData))
+      window.location.href="cart.html"
+  }
+  else{
+      alert("user doen't exist")
+  }
+ })
   
         
     
