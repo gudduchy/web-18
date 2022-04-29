@@ -18,12 +18,26 @@
 </head>
 <body>
   <div id="navbar">
-    <div><a href="signup.html">Sign Up</a></div>
-    <div><a href="login.html">Log In</a></div>
+    <!-- <div><a href="signup.html">Sign Up</a></div>
+    <div><a href="login.html">Log In</a></div> -->
     <div><a href="mens.html">Mens</a></div>
     <div><a href="women.html">Womens</a></div>
+    <div><a href="cart.html">cart</a></div>
+    <div><a href="login.html">user</a></div>
      </div>
+     <select id="sortPrice" onchange="handlePriceSort()">
+      <option value="">Sort By Names</option>
+      <option value="Lth">Low to High</option>
+      <option value="Htl">High to Low</option>
+      
+    </select>
+    <select id="sortName" onchange="handleNameSort()">
+      <option value="">Sort by Names</option>
+      <option value="asc">ascending</option>
+      <option value="dsc">descending</option>
+    </select>
     <h1>Womens page</h1>
+    
     <div id="container">
 
     </div>
@@ -488,6 +502,76 @@
     },
   ];
 
+     localStorage.setItem("masai-eCom",JSON.stringify(womensData ))
+     var cartLsData=JSON.parse(localStorage.getItem("masai-cart"))||[]
+
+      displayWomen(womensData)
+
+      // sort by names
+      function  handleNameSort(){
+         var selected=document.querySelector("#sortName").value
+         console.log(selected)
+         if(selected=="asc"){
+            womensData.sort(function(a,b){
+           if(a.name>b.name){
+             return 1;
+           }
+           if(a.name<b.name){
+             return -1;
+           }
+           return 0;
+           })
+           displayWomen(womensData)
+         }
+         if(selected=="dsc"){
+            womensData.sort(function(a,b){
+           if(a.name>b.name){
+             return -1;
+           }
+           if(a.name<b.name){
+             return 1;
+           }
+           return 0;
+           })
+           displayWomen(womensData)
+         }
+         
+       }
+
+      // sort by price
+      function handlePriceSort(){
+        var selected=document.querySelector("#sortPrice").value
+                 console.log(selected)
+         if(selected=="Lth"){
+          womensData.sort(function(a,b){
+          if(a.price>b.price){
+            return 1;
+          }
+          if(a.price<b.price){
+            return -1;
+          }
+          return 0;
+           })
+           console.log(womensData)
+          displayWomen(womensData);
+         }
+         if(selected=="Htl"){
+          womensData.sort(function(a,b){
+          if(a.price>b.price){
+            return -1;
+          }
+          if(a.price<b.price){
+            return 1;
+          }
+          return 0;
+           })
+           displayWomen(womensData)
+         }
+       }
+
+      function displayWomen(womensData){
+         document.querySelector("#container").innerHTML=""
+
     womensData.map(function(ele){
             var box=document.createElement("div")
            var img=document.createElement("img")
@@ -501,9 +585,19 @@
 
            var btn=document.createElement("button")
            btn.innerText="Add to Cart"
+           btn.addEventListener("click",function(){
+            addToCart(ele)
+           })
            console.log(img,p1,p2,p3)
            box.append(img,p1,p2,p3,btn)
            document.querySelector("#container").append(box)
 
+           function addToCart(ele){
+             alert("added to cart")
+             cartLsData.push(ele)
+             localStorage.setItem("masai-cart",JSON.stringify(cartLsData))
+           }
+         
         })
+      }
 </script>

@@ -38,8 +38,8 @@
     <div id="navbar">
         <div><a href="signup.html">Sign Up</a></div>
         <div><a href="login.html">Log In</a></div>
-        <div><a href="mens.html">Mens</a></div>
-        <div><a href="women.html">Womens</a></div>
+        <div><a href="#">Mens</a></div>
+        <div><a href="#">Womens</a></div>
          </div>
     <div id="container">
         <h3>Sign In</h3>
@@ -74,7 +74,7 @@ if(userData==null){
   else if(userData.email==data.email && userData.password==data.password){
       alert("Sign in successful")
       localStorage.setItem("signin",JSON.stringify(userData))
-      window.location.href="cart.html"
+      window.location.href="welcome.html"
   }
   else{
       alert("user doen't exist")
