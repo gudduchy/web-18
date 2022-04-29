@@ -13,3 +13,10 @@
     color:white;
     font-size: 30px;
 }
+   option{
+      font-size:20px;
+      background-color: teal;
+  }
+  select{
+      width:150px
+  }

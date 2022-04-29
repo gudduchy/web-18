@@ -298,7 +298,7 @@
   ];
           
        displayMenData(mensData)
-
+       var cartLsData=JSON.parse(localStorage.getItem("masai-cart"))||[]
        //sort by names
        function  handleNameSort(){
          var selected=document.querySelector("#sortName").value
@@ -376,10 +376,20 @@
 
            var btn=document.createElement("button")
            btn.innerText="Add to Cart"
+           btn.addEventListener("click",function(){
+             addcart(ele)
+           })
            console.log(img,p1,p2,p3)
            box.append(img,p1,p2,p3,btn)
            document.querySelector("#container").append(box)
 
         })
+         function addcart(ele){
+           
+           alert("added to cart")
+           
+           cartLsData.push(ele)
+             localStorage.setItem("masai-cart",JSON.stringify(cartLsData))
+         }
       }
 </script>
